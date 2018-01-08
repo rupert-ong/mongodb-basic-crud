@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 // ES6 Promises
 mongoose.Promise = global.Promise;
 
-// Connect to DB before tests run
+// Connect to DB before any tests run
 before((done) => {
   // Connect to MongoDB
   mongoose.connect('mongodb://localhost/testaroo');
@@ -15,3 +15,10 @@ before((done) => {
     console.log(`Connection error: ${err}`);
   });
 });
+
+// Drop the mariochars collection before each test
+beforeEach((done)=> {
+  mongoose.connection.collections.mariochars.drop(() => {
+    done();
+  });
+})

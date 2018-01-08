@@ -1,10 +1,10 @@
 const assert = require('assert');
 const MarioChar = require('../models/MarioChar');
 
-// Make char available in scopes
-var char;
-
 describe('Finding records', () => {
+  // Make char available in scopes
+  var char;
+
   beforeEach((done)=> {
     char = new MarioChar({ name: 'Mario' });
     char.save().then(()=> {

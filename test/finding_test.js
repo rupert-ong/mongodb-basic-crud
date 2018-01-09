@@ -26,4 +26,14 @@ describe('Finding records', () => {
       done();
     })
   });
+
+  it('Find all records from the database', (done) => {
+    var newChar = new MarioChar({ name: 'Toadstool' });
+    newChar.save().then(() => {
+      MarioChar.find().then((results) => {
+        assert(results.length === 2);
+        done();
+      });
+    });
+  });
 });
